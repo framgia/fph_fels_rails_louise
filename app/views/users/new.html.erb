@@ -1,0 +1,38 @@
+    <% provide(:title, 'Sign up') %>
+    <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+                <div class="card-img-left d-none d-md-flex">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register</h5>
+                        <%= form_for(@user, url: signup_path) do |f| %>
+                            <%= render 'shared/error_messages' , object: f.object%>
+
+                            <div class="form-label-group">
+                                <%= f.text_field :name, class: 'form-control' %>
+                                <%= f.label :name %>
+                            </div>
+
+                            <div class="form-label-group">
+                                <%= f.email_field :email, class: 'form-control' %>
+                                <%= f.label :email %>
+                            </div>
+
+                            <div class="form-label-group">
+                                <%= f.password_field :password, class: 'form-control' %>
+                                <%= f.label :password %>
+                            </div>
+
+                            <div class="form-label-group">
+                                <%= f.password_field :password_confirmation, class: 'form-control' %>
+                                <%= f.label :password_confirmation, "Confirmation" %>
+                            </div>
+                            <%= f.submit "Create my account", class: "btn btn-primary" %>
+                        <% end %>
+                        <a class="d-block text-center mt-2 small" href="#">Sign In</a>
+                        <hr class="my-4">
+                </div>
+            </div>
+        </div>
+    </div>
