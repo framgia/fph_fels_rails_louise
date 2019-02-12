@@ -2,16 +2,22 @@
         <%= link_to "E-Learning System", root_path , class: "navbar-brand"%>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <%= link_to "Dashboard", "#" , class: "nav-link"%>
-                </li>
+                <% if logged_in? %>
+                    <li class="nav-item">
+                        <%= link_to "Dashboard", "#" , class: "nav-link" %>
+                    </li>
 
-                <li class="nav-item">
-                    <%= link_to "Categories", "#" , class: "nav-link"%>
-                </li>
+                    <li class="nav-item">
+                        <%= link_to "Categories", "#" , class: "nav-link" %> 
+                    </li>
+                <% else %>
+
+                <% end %>
             </ul>
             <span class="navbar-text">
-                <%= link_to "Login", "#" , class: "nav-link"%>
+                <% if logged_in? %>
+                    <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
+                <% end %>
             </span>
         </div>
     </nav>
