@@ -2,7 +2,7 @@
     <div class="card card-signin flex-row my-5">
         <div class="card-body">
             <h5 class="card-title text-center">Add category</h5>
-            <%= form_for(@category, url: admin_categories_path) do |f| %>
+            <%= form_for([:admin, @category]) do |f| %>
                 <%= render 'shared/error2_messages' , object: f.object%>
 
                 <div class="form-label-group">
