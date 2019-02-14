@@ -1,0 +1,22 @@
+<% provide(:title, 'Edit Category') %>
+<div class="col-lg-10 col-xl-9 mx-auto">
+    <div class="card card-signin flex-row my-5">
+        <div class="card-body">
+        <h5 class="card-title text-center">Update category</h5>
+            <%= form_for :category, url: {action: "update"}, :method => :PATCH do |f| %>
+                <%= render 'shared/error2_messages' , object: f.object%>
+
+                <div class="form-label-group">
+                    <%= f.text_field :title, class: 'form-control' %>
+                    <%= f.label :title %>
+                </div>
+
+                <div class="form-label-group">
+                    <%= f.text_field :description, class: 'form-control' %>
+                    <%= f.label :description %>
+                </div>
+                <%= f.submit "Save changes", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>
