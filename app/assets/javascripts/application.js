@@ -17,7 +17,3 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
-// $('.choice-list').on('change', function() {
-//     $('.choice-list').not(this).prop('checked', false);
-// });

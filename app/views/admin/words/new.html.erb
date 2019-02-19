@@ -1,31 +1,11 @@
 <% provide(:title, 'New Word') %>
+<% provide(:button_text, 'Submit') %>
 <div class="col-lg-10 col-xl-9 mx-auto">
     <div class="card card-signin flex-row my-5">
         <div class="card-body">
             <h5 class="card-title text-left"> Add word</h5>
             <%= form_for([:admin_category, @word]) do |f| %>
-                <%= render 'shared/error3_messages' , object: f.object%>
-
-                <div class="form-label-group">
-                    <%= f.text_field :word, class: 'form-control' %>
-                    <%= f.label :word %>
-                </div>
-                
-                <%= f.fields_for :choices do |a| %>
-                    <div class="form-label-group">
-                        <div class = "row">
-                            <div class = "col-md-6">
-                                <%= a.text_field :content, class: 'form-control' %>
-                            </div>
-                            <div class = "col-md-6 choice">
-                               <h5>Choice<h5>
-                               <%= a.check_box :correct, class:"choice_taken"%>
-                               <%= a.label :correct %>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
-            <%= f.submit "Submit", class: "btn btn-primary", id: "sub_button" %>
+                <%= render partial: 'form', locals: { f: f } %>
             <% end %>
         </div>
     </div>
