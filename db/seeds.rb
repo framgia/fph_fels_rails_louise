@@ -16,8 +16,14 @@ Category.create!(title:  "Simple Words",
   description: "lorem ipsum lorem ipsum")
 
   20.times do |n|
-  title  = "Hello there"
+  title  = Faker::Name.first_name
   description = "lorem ipsum"
   Category.create!(title: title,
                   description: description)
-  end
+end
+
+categories = Category.order(:created_at).take(10)
+20.times do
+  word = Faker::Lorem.word
+  categories.each { |category| category.words.create!(word: word) }
+end
