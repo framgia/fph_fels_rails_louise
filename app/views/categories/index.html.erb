@@ -1,1 +1,37 @@
+<% provide(:title, 'User Category List') %>
+<br><br>
+<div class = "row">
+    <div class = "col">
+        <h3>Categories (<%= @categories.count%>)</h3>
+    </div>
+
+    <div class = "col">
+        <div class = "row">
+                <%= link_to "All learned", categories_path, class: "btn btn-outline-success btn-md" %>
+                <%= link_to "Learned", "#", class: "btn btn-outline-success  btn-md" %>
+                <%= link_to "Not learned", "#", class: "btn btn-outline-success btn-md" %>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <% @categories.each do |category| %>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= category.title%> | (<%= category.words.count%> words) </h5> 
+                        <p class="card-text"><%= category.description%> </p>
+                        <%= link_to "Learn this","#", class: "btn btn-primary btn-md" %>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    <%end%>
+</div>
+<%= will_paginate %>    
+
+
+
+
+
 
