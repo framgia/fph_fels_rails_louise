@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'words/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#new'
   get '/profile', to: 'users#show'
@@ -11,8 +12,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   namespace :admin do 
-    resources :categories
+    resources :categories do
+      resources :words
+    end
   end
   resources :users
   resources :categories
+  
 end

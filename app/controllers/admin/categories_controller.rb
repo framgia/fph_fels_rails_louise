@@ -4,7 +4,6 @@ before_action :logged_in_user, only: [:create, :destroy, :index, :edit, :update,
 def index
   @categories = Category.paginate(page: params[:page], :per_page => 10)
 end
-    
 def new
   @category = Category.new
 end

@@ -1,0 +1,28 @@
+<% provide(:title, 'Edit Word') %>
+<% provide(:button_text, 'Save changes') %>
+<div class="col-lg-10 col-xl-9 mx-auto">
+    <div class="card card-signin flex-row my-5">
+        <div class="card-body">
+        <h5 class="card-title text-left">Update word | <%=@word.word%></h5>
+                <%= form_for([:admin, @category, @word]) do |f| %>
+                    <%= render partial: 'form', locals: { f: f } %>
+                <% end %>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$('.choice_taken').on('change', function() {
+    $('.choice_taken').not(this).prop('checked', false);
+});
+
+$('.choice_taken').click(function () {
+    if ($(this).is(':checked')) {
+        $('#sub_button').removeAttr('disabled'); 
+
+    } else {
+        $('#sub_button').attr('disabled', true); 
+    }
+});
+
+</script>

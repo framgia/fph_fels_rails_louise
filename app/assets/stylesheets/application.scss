@@ -211,3 +211,14 @@ body {
   }
     
 }
+
+.form-group {
+  margin-bottom: 1rem;
+
+  &:row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
