@@ -19,7 +19,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><%= category.title%> | (<%= category.words.count%> words) </h5> 
+                    <h5 class="card-title"><%= category.title%> | (<%= pluralize(category.words.count, "word")%>) </h5> 
                         <p class="card-text"><%= category.description%> </p>
                         <%= link_to "Learn this","#", class: "btn btn-primary btn-md" %>
                 </div>
@@ -28,10 +28,4 @@
         </div>
     <%end%>
 </div>
-<%= will_paginate %>    
-
-
-
-
-
-
+<%= will_paginate %>
