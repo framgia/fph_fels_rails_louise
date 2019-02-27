@@ -1,0 +1,28 @@
+<div class="col-lg-10 col-xl-9 mx-auto">
+    <div class="card card-signin flex-row my-5">
+        <div class="card-body">
+            <div class = "row">
+                <div class = "col-md-9">
+                    <h3 class="text-left"><%= @lesson.category.title%></h3>
+                </div>
+                <div class = "col-md-3 text-center">
+                    <h5> <%= @lesson.answers.count + 1%> of <%= @lesson.category.words.count%></h5>
+                </div>
+                    <div class="card border-dark mb-3" id="another-card">
+                        <div class="card-body text-dark">
+                        <h5 class="card-title"><%= @specific_word.word%></h5>
+                        <% @specific_word.choices.each do |choose| %>
+                                <%= form_for [@lesson, @answer] do |f|%>
+                                    <%= f.hidden_field :word_id, value: @specific_word.id %>                    
+                                    <%= f.hidden_field :choice_id, value: choose.id %>
+                                    <%= f.submit choose.content, class: 'btn btn-outline-secondary btn-block' %><br>
+                                <%end%>                      
+                        <%end%>
+                        <p class="card-hidden">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+

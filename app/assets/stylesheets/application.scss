@@ -14,6 +14,7 @@
  *
  */
 @import "bootstrap";
+@import 'font-awesome';
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
@@ -29,27 +30,35 @@ body {
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+  .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+  }
+  .card-body {
+    padding: 2rem;
+  }
+
+  
 }
 
-.card-signin .card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
+#another-card{
+  margin-left: 3%
 }
 
-.card-signin .card-img-left {
-  width: 45%;
-  /* Link to your background image using in the property below! */
-  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-  background-size: cover;
-}
-
-.card-signin .card-body {
-  padding: 2rem;
-}
 
 .card {
   border-radius: 10px;
+}
+
+.card-hidden{
+  color: white;
 }
 .form-signin {
   width: 100%;
