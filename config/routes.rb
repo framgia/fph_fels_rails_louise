@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'answers/new'
-  get 'lessons/new'
-  get 'words/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'sessions#new'
   get '/profile', to: 'users#show'
@@ -22,10 +19,7 @@ Rails.application.routes.draw do
   resources :lessons do
     resources :answers
   end
-  
-  resources :lessons, only: [:show, :update, :destroy]
-  resources :words
+
   resources :users
   resources :categories
-  
 end
