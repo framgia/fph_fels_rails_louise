@@ -8,24 +8,36 @@
     <div class = "col">
         <div class = "row">
                 <%= link_to "All learned", categories_path, class: "btn btn-outline-success btn-md" %>
-                <%= link_to "Learned", "#", class: "btn btn-outline-success  btn-md" %>
-                <%= link_to "Not learned", "#", class: "btn btn-outline-success btn-md" %>
+                <%= link_to "Learned", categories_path(:learned => 1), class: "btn btn-outline-success  btn-md" %>
+                <%= link_to "Not learned", categories_path(:learned => 0), class: "btn btn-outline-success btn-md" %>
         </div>
     </div>
 </div>
 <br>
-<div class="row">
-    <% @categories.each do |category| %>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><%= category.title%> | (<%= pluralize(category.words.count, "word")%>) </h5> 
-                        <p class="card-text"><%= category.description%> </p>
-                        <%= link_to "Learn this","#", class: "btn btn-primary btn-md" %>
+    <div class="row">
+        <% @categories.each do |category| %>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= category.title%> | (<%= pluralize(category.words.count, "word")%>) </h5> 
+                            <p class="card-text"><%= category.description%> </p>
+                            <% if lesson_exist = current_user.lesson(category) %>
+                                <%= link_to "Show results", lesson_exist, class: "btn btn-success btn-md" %>
+                            <%else%>
+                                <%= form_tag(current_user.lessons.build) do %>
+                                    <%= hidden_field_tag :category_id, category.id %>
+                                    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+                                        Learn this 
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                    </div>
                 </div>
+                <br><br>
             </div>
-            <br><br>
-        </div>
-    <%end%>
-</div>
-<%= will_paginate %>
+        <%end%>
+            <%= will_paginate %>
+    </div>
+    
+       
+  

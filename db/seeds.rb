@@ -11,19 +11,18 @@ password:              "123456",
 password_confirmation: "123456",
 admin: true)
 
+15.times do
+  title = Faker::Name.title
+  description = Faker::Lorem.sentence
+  cate = Category.create! title: title, description: description
 
-Category.create!(title:  "Simple Words",
-  description: "lorem ipsum lorem ipsum")
-
-  20.times do |n|
-  title  = Faker::Name.first_name
-  description = "lorem ipsum"
-  Category.create!(title: title,
-                  description: description)
-end
-
-categories = Category.order(:created_at).take(10)
-20.times do
-  word = Faker::Lorem.word
-  categories.each { |category| category.words.create!(word: word) }
+  10.times do
+    word = Category.all.sample.words.build word: Faker::Lorem.word
+    word.choices = [
+      Choice.new(content: Faker::Lorem.word, correct: true),
+      Choice.new(content: Faker::Lorem.word, correct: false),
+      Choice.new(content: Faker::Lorem.word, correct: false)
+    ].shuffle
+    word.save!
+  end
 end

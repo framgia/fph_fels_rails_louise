@@ -1,0 +1,40 @@
+<div class="col-lg-10 col-xl-9 mx-auto">
+    <div class="card card-signin flex-row my-5">
+        <div class="card-body">
+            <div class = "row">
+                <div class = "col-md-9">
+                    <h3 class="text-left"><%= @lesson.category.title%></h3>
+                </div>
+                <div class = "col-md-3 text-center">
+                    <h5>Result: <%= @lesson.get_correct.count%> of <%= @lesson.answers.count%></h5>
+                </div>
+                <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Word</th>
+                    <th scope="col">Your Answer</th>
+                    <th scope="col">Correct Answer</th>
+                    <th scope="col"> </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% @lesson.answers.each do |answer|%>
+                    <tr>
+                        <td><%= answer.word.word%></td>
+                        <td><%= answer.choice.content %></td>
+                        <td><%= answer.word.answer_right%></td>
+                        <%if answer.choice.content === answer.word.answer_right%>
+                            <td><i class="fa fa-check" style="color:green"></i></td>
+                        <%else%>
+                            <td><i class="fa fa-close" style="color:red"></i></td>
+                        <%end%>
+                    </tr>
+                    <%end%>
+                </tbody>
+            </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+

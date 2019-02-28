@@ -7,7 +7,15 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  has_many :lessons
+  has_many :words, through: :lessons
+  has_many :answers, through: :lessons
+  has_many :categories, through: :lessons
   validates :password, presence: true, length: { minimum: 6 }
+
+  def lesson(category)
+    lesson_exist = self.lessons.find_by(category: category)
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)
