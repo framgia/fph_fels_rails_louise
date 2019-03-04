@@ -50,7 +50,9 @@
                                     :category,
                                     options_from_collection_for_select(current_user.categories, 'id', 'title', params[:category]),
                                     include_blank: "All learned",
-                                    class: 'form-control', onchange: "this.form.submit();")
+                                    class: 'form-control',
+                                    style: "cursor:pointer",    
+                                    onchange: "this.form.submit();")
                                 %>
                             </div>
                         <% end %>
