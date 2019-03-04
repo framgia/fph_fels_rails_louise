@@ -1,0 +1,52 @@
+<br>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Settings</h4>
+    </div>
+    <div class="card-body">
+        <div class = "row">
+            <div class= "col-md-4 col-md-offset-3">
+                <%= form_for(@user) do |f|%>
+                    <%= render 'shared/error_messages' , object: f.object%>
+                    <div class="form-label-group">
+                        <div class="text-center">
+                        <%if @user.picture? %>
+                            <%= image_tag(@user.picture.url, size:"150x150")%>
+                        <%else%>
+                            <%= image_tag("user.png", size:"150x150")%>
+                        <%end%>
+                        </div>
+                        <br>
+                        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
+                    </div>
+
+                    
+                    <div class="form-label-group">
+                        <%= f.text_field :name, class: 'form-control' %>
+                        <%= f.label :name %>
+                    </div>
+
+                    <div class="form-label-group">
+                        <%= f.email_field :email, class: 'form-control' %>
+                        <%= f.label :email %>
+                    </div>
+
+                    <div class="form-label-group">
+                        <%= f.password_field :password, class: 'form-control' %>
+                        <%= f.label :password%>
+                    </div>
+
+                    <div class="form-label-group">
+                        <%= f.password_field :password_confirmation, class: 'form-control' %>
+                        <%= f.label :password_confirmation%>
+                    </div>
+
+                    <div class="text-center">
+                        <%= f.submit "Update changes", class: "btn btn-primary " %>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -11,7 +11,9 @@ class User < ApplicationRecord
   has_many :words, through: :lessons
   has_many :answers, through: :lessons
   has_many :categories, through: :lessons
-  validates :password, presence: true, length: { minimum: 6 }
+  has_many :activities, dependent: :destroy
+  validates :password, presence: true, length: { minimum: 6 },allow_nil: true
+  mount_uploader :picture, PictureUploader
 
   def lesson(category)
     lesson_exist = self.lessons.find_by(category: category)
@@ -29,7 +31,7 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def remember 
+  def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
@@ -39,7 +41,15 @@ class User < ApplicationRecord
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
-    
+
+  def group_answer(params)
+    if params[:category].present?
+      answers.where("lessons.category_id = ?", params[:category])
+    else
+      answers
+    end
+  end
+
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
