@@ -21,6 +21,14 @@ Rails.application.routes.draw do
   resources :lessons do
     resources :answers
   end
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  resources :relationships,  only: [:create, :destroy]
   resources :users
   resources :categories
   resources :words, only: [:index]

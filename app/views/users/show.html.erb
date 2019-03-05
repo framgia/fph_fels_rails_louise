@@ -18,13 +18,14 @@
         </div>
 
         <div class="card mt-4">
+            <% @user ||= current_user %>
             <div class="card-body">
                 <div class="text-center">
                     <div class="d-inline-block mr-2">
-                        <h4>0</h4> following
+                        <h4 id = "following"><%= @user.following.count %></h4> following
                     </div>
                     <div class="d-inline-block">
-                        <h4>0</h4>  followers
+                        <h4 id = "followers"><%= @user.followers.count %></h4>  followers
                     </div>
                 </div>
             </div>
