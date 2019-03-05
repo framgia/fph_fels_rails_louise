@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_24_030654) do
+ActiveRecord::Schema.define(version: 2019_03_01_021523) do
+
+  create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "action_type"
+    t.bigint "action_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_type", "action_id"], name: "index_activities_on_action_type_and_action_id"
+  end
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "word_id"
@@ -32,11 +41,10 @@ ActiveRecord::Schema.define(version: 2019_02_24_030654) do
 
   create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
-    t.boolean "correct"
+    t.boolean "correct", default: false
     t.bigint "word_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["word_id", "created_at"], name: "index_choices_on_word_id_and_created_at"
     t.index ["word_id"], name: "index_choices_on_word_id"
   end
 
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_02_24_030654) do
     t.string "password_digest"
     t.boolean "admin", default: false
     t.string "remember_digest"
+    t.string "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
