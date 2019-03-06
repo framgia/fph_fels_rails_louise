@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :words, through: :lessons
   has_many :answers, through: :lessons
   has_many :categories, through: :lessons
-  has_many :activities, dependent: :destroy
+  has_many :activities
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -68,6 +68,10 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def posts
+    Activity.where("user_id IN (?) OR user_id = ?", following_ids, self.id)
   end
 
   # Forgets a user.

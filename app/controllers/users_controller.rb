@@ -36,6 +36,10 @@
         render 'edit'
       end
     end
+
+    def dashboard
+      @posts = current_user.posts.paginate(page: params[:page], per_page:8)
+    end
     
     private 
 
