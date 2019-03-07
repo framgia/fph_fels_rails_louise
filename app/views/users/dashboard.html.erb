@@ -49,7 +49,27 @@
         <div class="card">
             <h5 class="card-header">Activity Feed</h5>
             <div class="card-body">
+            <%if @posts.exists?%>
+               <% @posts.each do |post|%>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <% @user = post.user %>
+                            <%if post.action.is_a?(Lesson)%>
+                                <%= render partial: 'activities/lesson_activity', locals: { post: post } %>
+                            <%else%>
+                                <%= render partial: 'activities/relationship_activity', locals: { post: post } %>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+               <% end %>
+               <%= will_paginate @posts%>
+            <%else%>
+                <center><h5>No activity yet</h5></center>
+            <%end%>
             </div>
+            
         </div>
     </div>
 </div>
