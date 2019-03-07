@@ -13,6 +13,7 @@
 
                     <h4><%= @user.name %></h4>
                     <div><%= @user.email %></div>
+                    <%= render 'follow_form' if logged_in?%>    
                 </div>
             </div>
         </div>
@@ -45,9 +46,23 @@
         <div class="card">
             <h5 class="card-header">Activity Feed</h5>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <%if @user.activities.exists?%>
+                    <% @user.activities.each do |post|%>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <%if post.action.is_a?(Lesson)%>
+                                        <%= render partial: 'activities/lesson_activity', locals: { post: post } %>
+                                    <%else%>
+                                        <%= render partial: 'activities/relationship_activity', locals: { post: post } %>
+                                    <%end%>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                <%else%>
+                    <center><h5>No activity yet</h5></center>
+                <%end%>
             </div>
         </div>
     </div>
