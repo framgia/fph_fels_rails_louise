@@ -5,7 +5,7 @@
     <%picture = @user.picture.url %>
     <%name = @user.name %>
 <%end %>
-    
+
 <div class="p-2">
     <%if @user.picture? %>
         <%= image_tag(picture,  size:"50x50",class: "rounded-pill") %>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="p-2">
-    <h5><%= link_to name, user_path(@user) %></h5> learned <%= post.action.score %> of <%= post.action.answers.count %>
+    <%= link_to name, user_path(@user),  class: "font-weight-bold" %> learned <%= post.action.score %> of <%= post.action.answers.count %>
     in <%= link_to post.action.category.title, post.action, class: "badge badge-info"  %>
     <p><small><%= time_ago_in_words(post.created_at) %> ago</small></p>
 </div>
