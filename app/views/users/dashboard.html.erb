@@ -54,10 +54,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex">
+                            <% @user = post.user %>
                             <%if post.action.is_a?(Lesson)%>
-                                <%= render partial: 'lesson_activity', locals: { post: post } %>
+                                <%= render partial: 'activities/lesson_activity', locals: { post: post } %>
                             <%else%>
-                                <%= render partial: 'relationship_activity', locals: { post: post } %>
+                                <%= render partial: 'activities/relationship_activity', locals: { post: post } %>
                             <%end%>
                         </div>
                     </div>
