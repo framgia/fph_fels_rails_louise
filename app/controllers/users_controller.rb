@@ -1,5 +1,5 @@
   class UsersController < ApplicationController
-    before_action :logged_in_user, only: [:create, :index, :edit, :update, :dashboard, :show, :new]   
+    before_action :logged_in_user, only: [:create, :index, :edit, :update, :dashboard, :show, :new] 
     def index
       @users = User.where.not(id: current_user.id).paginate(page: params[:page], per_page:8)
     end
@@ -41,7 +41,6 @@
     def dashboard
       @posts = current_user.posts.paginate(page: params[:page], per_page:8)
     end
-    
     private 
 
       def user_params

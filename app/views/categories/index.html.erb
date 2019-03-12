@@ -5,16 +5,16 @@
         <h3>Categories (<%= @categories.count%>)</h3>
     </div>
 
-    <div class = "col">
-        <div class = "row">
-                <%= link_to "All learned", categories_path, class: "btn btn-outline-success btn-md" %>
-                <%= link_to "Learned", categories_path(:learned => 1), class: "btn btn-outline-success  btn-md" %>
-                <%= link_to "Not learned", categories_path(:learned => 0), class: "btn btn-outline-success btn-md" %>
-        </div>
+    <div class="d-flex flex-row">
+        <div class="p-2"><%= link_to "All", categories_path, class: "btn btn-info btn-md" %></div>
+        <div class="p-2"><%= link_to "Learned", categories_path(:learned => 1), class: "btn btn-info  btn-md" %></div>
+        <div class="p-2"><%= link_to "Not learned", categories_path(:learned => 0), class: "btn btn-info btn-md" %></div>
     </div>
+    
 </div>
 <br>
     <div class="row">
+    <%if @categories.exists? %>
         <% @categories.each do |category| %>
             <div class="col-sm-6">
                 <div class="card">
@@ -36,7 +36,14 @@
                 <br><br>
             </div>
         <%end%>
+    <%else%>
+    <div class = "text-center">
+        <h5>No categories here</h5>                        
+    </div>
+    <%end%>
+        <div class="mx-auto" style="width: 300px;">
             <%= will_paginate %>
+        </div>
     </div>
     
        
