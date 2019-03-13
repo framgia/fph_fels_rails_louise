@@ -19,3 +19,7 @@
     in <%= link_to post.action.category.title, post.action, class: "badge badge-info"  %>
     <p><small><%= time_ago_in_words(post.created_at) %> ago</small></p>
 </div>
+
+<div class="ml-auto p-2">
+    <%= render partial: "activities/voting", locals: {post: post}%>
+</div>  

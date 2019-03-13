@@ -1,0 +1,11 @@
+<span class="liking-system <%= post.id%>">
+    <%= link_to like_activity_path(post), :class => 'btn btn-default btn-sm', method: :put, :remote => true do %>
+        <i class= "fa fa-thumbs-o-up"></i>
+        <%= post.get_upvotes.size %>
+    <% end %>
+
+    <%= link_to dislike_activity_path(post), :class => 'btn btn-default btn-sm', method: :put, :remote => true do %>
+        <i class= "fa fa-thumbs-o-down"></i>
+        <%= post.get_downvotes.size %>
+    <% end %>
+</span>
