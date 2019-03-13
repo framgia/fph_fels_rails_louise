@@ -15,25 +15,31 @@
 
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">No. of words</th>
-            <th scope="col">Actions</th>
+        <tr class="d-flex">
+            <th class="col-3">Title</th>
+            <th class="col-4">Description</th>
+            <th class="col-2">No. of words</th>
+            <th class="col-3">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <% @categories.each do |category| %>
-            <tr>
-                <td><%= category.title %></td>
-                <td><%= category.description %></td>
-                <td><%= category.words.count %></td>
-                <td><%= link_to "Show words", admin_category_words_path(category), class: "btn btn-primary btn-sm" %> <%= link_to "Edit", edit_admin_category_path(category), class: "btn btn-warning btn-sm"%> <%= link_to "Delete", admin_category_path(category), method: :delete,
-                data: { confirm: "You sure?" } %> </td>
-            </tr>
-        <% end %>
+        <%if @categories.exists?%>
+            <% @categories.each do |category| %>
+                <tr class="d-flex">
+                    <td class="col-3"><%= category.title %></td>
+                    <td class="col-4"><%= category.description %></td>
+                    <td class="col-2"><%= category.words.count %></td>
+                    <td class="col-3"><%= link_to "Show words", admin_category_words_path(category), class: "btn btn-primary btn-sm" %> <%= link_to "Edit", edit_admin_category_path(category), class: "btn btn-warning btn-sm"%> <%= link_to "Delete", admin_category_path(category), method: :delete,
+                    data: { confirm: "You sure?" },  class: "btn btn-danger btn-sm" %> </td>
+                </tr>
+            <% end %>
+        <%else%>
+            <tr>No categories yet</tr>
+        <%end%>
     </tbody>
 </table>
- <%= will_paginate %>
+<div class="mx-auto" style="width: 300px;">
+    <%= will_paginate %>
+</div>
 <div class="card card-signin flex-row my-5">
 </div>

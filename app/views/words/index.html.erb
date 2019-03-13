@@ -9,7 +9,7 @@
                 <%if current_user.picture? %>
                     <%= image_tag(current_user.picture.url,  size:"180x180",class: "rounded-pill") %>
                 <% else %>
-                    No picture to show
+                    <%= image_tag("user.png",  size:"180x180",class: "rounded-pill") %>
                 <% end %>
 
                 <h4><%= current_user.name %></h4>
@@ -47,21 +47,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                <% @answers.each do |f|%>
-                    <tr>
-                        <td><%= f.word.word %></td>
-                        <%if f.choice.content == f.word.answer_right%>
-                            <td><p class="text-success font-weight-bold"><%= f.choice.content%></p></td>
-                            <td> </td>
-                        <%else%>
-                            <td><p class="text-danger font-weight-bold"><%= f.choice.content%></p></td>
-                            <td><%= f.word.answer_right%></td>
-                        <%end%>
+                <%if @answers.any? %>
+                    <% @answers.each do |f|%>
+                        <tr>
+                            <td><%= f.word.word %></td>
+                            <%if f.choice.content == f.word.answer_right%>
+                                <td><p class="text-success font-weight-bold"><%= f.choice.content%></p></td>
+                                <td> </td>
+                            <%else%>
+                                <td><p class="text-danger font-weight-bold"><%= f.choice.content%></p></td>
+                                <td><%= f.word.answer_right%></td>
+                            <%end%>
+                        </tr>
+                    <%end%>
+                <%else%>
+                    <tr>You have not answered any lessons yet
+                        <td></td>
+                        <td>You have not answered any lessons yet</td>
+                        <td></td>
                     </tr>
+
                 <%end%>
                 </tbody>
               </table>
-              <%= will_paginate @answers %>
+              <div class="mx-auto" style="width: 500px;">
+                <%= will_paginate @answers %>
+              </div>
             </div>
         </div>
     </div>

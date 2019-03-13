@@ -64,7 +64,9 @@
                     </div>
                 </div>
                <% end %>
-               <%= will_paginate @posts%>
+               <div class="mx-auto" style="width: 400px;">
+                    <%= will_paginate @posts%>
+               </div>
             <%else%>
                 <center><h5>No activity yet</h5></center>
             <%end%>
