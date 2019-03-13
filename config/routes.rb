@@ -32,4 +32,10 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
   resources :words, only: [:index]
+  resources :activities do 
+    member do
+      put "like", to: "activities#upvote"
+      put "dislike", to: "activities#downvote"
+    end
+  end
 end
